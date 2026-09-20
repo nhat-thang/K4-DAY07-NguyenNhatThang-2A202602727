@@ -1,7 +1,7 @@
 # Báo Cáo Cá Nhân — Lab 7: Embedding & Vector Store
 
 **Họ tên:** Nguyễn Nhật Thăng — MSSV 2A202602727
-**Nhóm:** Four Bot
+**Nhóm:** Four bot
 **Ngày:** 2026-09-20
 
 > **Nộp 1 bản / sinh viên.** Phần nhóm (lựa chọn tài liệu, thiết kế chiến lược, bộ câu hỏi đánh giá, demo) nộp chung 1 bản trong `REPORT_NHOM.md`. Chi tiết thang điểm: `docs/SCORING.md`.
@@ -168,8 +168,8 @@ Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân củ
 
 **Phân tích lỗi (câu 3 và câu 5):** đây là ví dụ thật cho hiện tượng "chunk đúng chủ đề nhưng không chứa đáp án cụ thể thắng chunk có đáp án" — cosine đo độ giống *chủ đề*, không đo *mật độ thông tin trả lời được*. Câu 5 đặc biệt đáng chú ý: hai chunk (thời hạn *gửi* yêu cầu vs. thời gian *xử lý* yêu cầu) dùng chung rất nhiều từ vựng ("Trả hàng/Hoàn tiền", "ngày") nên điểm cosine gần nhau (0.8033 vs 0.8008), khiến chunk sai chủ đề con lại xếp trên chunk đúng. Đề xuất sửa: dùng `RecursiveChunker` hoặc chunker theo heading để giữ tiêu đề mục ("1.2. Thời gian tối đa để gửi yêu cầu" vs "Thời gian xử lý") gắn liền với nội dung, giúp phân biệt rõ hai mục dễ nhầm này hơn `SentenceChunker` (vốn cắt theo câu, không giữ ngữ cảnh tiêu đề mục).
 
-**Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
-> *(điền sau buổi demo — CP6/CP7, chưa diễn ra)*
+**Điều hay nhất tôi học được từ thành viên khác / nhóm khác:**
+> *(Buổi demo trực tiếp CP6/CP7 chưa diễn ra; điều dưới đây rút ra từ bảng so sánh chiến lược thật trong `REPORT_NHOM.md` mục 2, không phải từ demo.)* Điều bất ngờ nhất là chiến lược của Hoàng (Heading & Section-based Chunking) xử lý tốt câu 2 (quy trình 8 bước) — thứ mà chiến lược `SentenceChunker` của tôi xử lý kém hơn, vì cắt theo câu làm quy trình nhiều bước bị rải ra nhiều chunk rời, mất liên kết "đây là bước mấy trong quy trình nào". Ngược lại, ở câu 1 và câu 4 (điều khoản một câu, không phải quy trình nhiều bước), `SentenceChunker` lại hoạt động tốt ngang `FixedSizeChunker` của Hữu. Bài học: **không có chiến lược chunking nào thắng tuyệt đối** — nó phụ thuộc vào việc đơn vị ngữ nghĩa tự nhiên của câu hỏi là một câu đơn hay một quy trình nhiều bước/nhiều mục.
 
 ---
 
