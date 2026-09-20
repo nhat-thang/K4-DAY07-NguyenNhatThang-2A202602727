@@ -148,20 +148,28 @@ tests/test_solution.py::TestEmbeddingStoreDeleteDocument::test_delete_returns_tr
 
 Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân của bạn trong gói `src`. **5 câu hỏi này phải trùng với các thành viên cùng nhóm** (xem `REPORT_NHOM.md`).
 
-> **Trạng thái: chưa thực hiện được.** Phần này cần (1) bộ 5 câu hỏi benchmark do nhóm Four Bot thống nhất (R2 chủ trì, CP5) và (2) corpus đủ 5–10 tài liệu đã gộp từ cả 4 thành viên — hiện `data/chinh_sach_thuong_mai_dien_tu/` mới có 2/8 file (phần crawl của tôi). Tôi sẽ điền bảng dưới đây ngay sau khi nhóm chốt 5 câu hỏi và gộp xong corpus, chạy `bench.py` với chiến lược riêng của mình.
+> **Đã chạy thật bằng `bench.py`** trên corpus đầy đủ 8 tài liệu (`data/chinh_sach_thuong_mai_dien_tu/`), chiến lược `SentenceChunker(max_sentences_per_chunk=3)` (410 chunk), embedder thật **Gemini `gemini-embedding-001`** (không dùng Mock — đã bật `EMBEDDING_PROVIDER=gemini` trong `.env`). Output đầy đủ nằm trong `ket_qua_benchmark.txt`.
 
-| # | Câu hỏi (Query) | Top-1 Chunk truy xuất được (tóm tắt) | Điểm Score | Có liên quan không? (Relevant) | Câu trả lời của Agent (tóm tắt) |
+> `KnowledgeBaseAgent` dùng `demo_llm` (mock, echo lại prompt) vì không có API key cho model sinh văn bản — chỉ có key Gemini cho **embedding**. Vì vậy cột "Agent" dưới đây không phải câu trả lời tự nhiên thật, mà tôi tự đánh giá **grounding**: đáp án đúng có nằm trong ngữ cảnh (top-3) truyền cho agent hay không — đúng cách chấm 2 mức mà lab yêu cầu (không chỉ nhìn "có liên quan" mà kiểm tra chuỗi đáp án cụ thể có thật trong ngữ cảnh).
+
+| # | Câu hỏi (Query) | Top-1 Chunk truy xuất được (tóm tắt) | Score top-1 | Đáp án đúng có trong top-3? | Điểm (/2, theo `docs/SCORING.md`) |
 |---|-------|--------------------------------|-------|-----------|------------------------|
-| 1 | *(chờ nhóm chốt 5 câu hỏi)* | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 | Thời hạn gửi yêu cầu cho hàng thường và thực phẩm? | (doc_id=77251) "...15 (mười lăm) ngày... Riêng đối với...thực phẩm tươi sống và đông lạnh...trong vòng 24 giờ..." | 0.8315 | Có, **ngay ở top-1** — 1 chunk duy nhất chứa cả 2 mốc (15 ngày / 24 giờ) | **2/2** |
+| 2 | Các bước gửi yêu cầu trực tiếp từ trang đơn hàng? | (doc_id=79233) "...Cách 1: Gửi yêu cầu trực tiếp tại trang đơn hàng. Bước 1: Mở ứng dụng Shopee... Bước 2: Tại đơn hàng..." | 0.9113 | Có, đúng nguồn hướng dẫn, top-1 có Bước 1-2 | **2/2** |
+| 3 | Video mở kiện hàng cần tiêu chuẩn kỹ thuật/dung lượng nào? | (doc_id=79467) "Góc quay rõ ràng...Quay 6 mặt của kiện hàng để chứng minh tình trạng..." | 0.7998 | **Một phần** — top-1..3 đều đúng chủ đề, có tiêu chí "quay 6 mặt", nhưng **thiếu** thông số dung lượng (ảnh ≤5MB, video ≤100MB/1 phút — nằm ở đoạn "Quy định về bằng chứng" cùng file nhưng bị `SentenceChunker` tách sang chunk khác, không lọt top-3) | **1/2** |
+| 4 | Người mua có phải trả phí vận chuyển hoàn hàng? | (doc_id=77251) "TRÁCH NHIỆM VỀ CHI PHÍ HOÀN TRẢ SẢN PHẨM CỦA NGƯỜI MUA... không phải thanh toán bất cứ chi phí vận chuyển nào... Tự sắp xếp: cần thanh toán trước..." | 0.8344 | Có, đầy đủ ngay ở top-1 (cả 2 trường hợp: miễn phí / tự sắp xếp phải trả trước) | **2/2** |
+| 5 | Thời gian **xử lý** yêu cầu Trả hàng/Hoàn tiền là bao lâu? *(`metadata_filter={"audience":"buyer"}`)* | (doc_id=188931) "...15 ngày... 20 ngày kể từ lúc đơn hàng được cập nhật trạng thái 'Lấy hàng thành công'..." | 0.8033 | **Đáp án đúng không ở top-1** — top-1 (188931) thực ra trả lời nhầm sang "thời hạn *gửi* yêu cầu" (15/20 ngày), còn đáp án đúng "xử lý trong khoảng 3-5 ngày làm việc" nằm ở **top-2** (doc_id=79233) | **1/2** |
 
-**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** __ / 5 *(chưa chạy được)*
+**Tổng điểm truy xuất theo `docs/SCORING.md`: 2+2+1+2+1 = 8/10**
+
+**Bao nhiêu câu hỏi trả về chunk có liên quan trong top-3?** **5/5** — nhưng chỉ **3/5** có đáp án đúng nằm ngay ở top-1; đây chính là khoảng cách giữa "chấm ngây thơ" (chỉ xét top-3 có liên quan) và "chấm thật" mà `day7-lab-data-foundations.md` mục 7 cảnh báo — nếu chấm theo kiểu ngây thơ sẽ ra 5/5 (thổi phồng), chấm đúng theo nội dung ra 8/10.
+
+**A/B với metadata filter (câu 5):** chưa chạy `search_with_filter(metadata_filter=None)` để so sánh trực tiếp trong lần này (việc này thuộc REPORT_NHOM mục 3, do R2/nhóm tổng hợp), nhưng xác nhận được filter *có tác dụng lọc thật*: cả 2 tài liệu `audience: seller` (`77246`, `77247`) không xuất hiện trong top-3 nào của câu 5 khi bật filter.
+
+**Phân tích lỗi (câu 3 và câu 5):** đây là ví dụ thật cho hiện tượng "chunk đúng chủ đề nhưng không chứa đáp án cụ thể thắng chunk có đáp án" — cosine đo độ giống *chủ đề*, không đo *mật độ thông tin trả lời được*. Câu 5 đặc biệt đáng chú ý: hai chunk (thời hạn *gửi* yêu cầu vs. thời gian *xử lý* yêu cầu) dùng chung rất nhiều từ vựng ("Trả hàng/Hoàn tiền", "ngày") nên điểm cosine gần nhau (0.8033 vs 0.8008), khiến chunk sai chủ đề con lại xếp trên chunk đúng. Đề xuất sửa: dùng `RecursiveChunker` hoặc chunker theo heading để giữ tiêu đề mục ("1.2. Thời gian tối đa để gửi yêu cầu" vs "Thời gian xử lý") gắn liền với nội dung, giúp phân biệt rõ hai mục dễ nhầm này hơn `SentenceChunker` (vốn cắt theo câu, không giữ ngữ cảnh tiêu đề mục).
 
 **Điều hay nhất tôi học được từ thành viên khác / nhóm khác (qua demo):**
-> *(điền sau buổi demo — CP6/CP7)*
+> *(điền sau buổi demo — CP6/CP7, chưa diễn ra)*
 
 ---
 
@@ -173,5 +181,5 @@ Chạy **5 câu hỏi đánh giá của nhóm** trên mã nguồn cá nhân củ
 | Hướng tiếp cận của tôi (My Approach) | 10 / 10 |
 | Hoàn thiện code (Core Implementation — tests) | 30 / 30 (42/42 test pass) |
 | Dự đoán độ tương tự (Similarity Predictions) | 5 / 5 |
-| Kết quả truy xuất của tôi (Competition Results) | 0 / 10 — chưa chạy được, chờ nhóm chốt 5 câu hỏi benchmark + gộp corpus (CP5) |
-| **Tổng phần cá nhân (hiện tại)** | **50 / 60** — còn thiếu mục 5, sẽ cập nhật sau CP5/CP6 |
+| Kết quả truy xuất của tôi (Competition Results) | 8 / 10 — chạy thật bằng Gemini embedder; 5/5 câu có chunk liên quan trong top-3, nhưng chỉ 3/5 đúng đáp án ngay ở top-1 (chấm theo `docs/SCORING.md`: 2+2+1+2+1) |
+| **Tổng phần cá nhân** | **58 / 60** |

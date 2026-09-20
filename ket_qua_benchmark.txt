@@ -1,0 +1,51 @@
+Dang khoi tao GeminiEmbedder (gemini-embedding-001)...
+Backend: gemini-embedding-001
+
+Da nap 410 chunk tu 8 file, chien luoc SentenceChunker(max_sentences_per_chunk=3)
+
+=== Cau 1: Người mua có thời hạn bao nhiêu ngày để gửi yêu cầu Trả hàng/Hoàn tiền đối với hàng thông thường và thực phẩm?
+    top-1: score=0.8315 doc_id=77251
+             Người Mua có thể gửi yêu cầu trả hàng/hoàn tiền trong vòng 15 (mười lăm) ngày kể từ lúc đơn hàng được cập nhật giao hàng thành công. Riêng đối với các Sản Phẩm là thực phẩm tươi sống và đông lạnh, Ngư
+    top-2: score=0.8204 doc_id=188931
+             Nếu hàng nhận được có vấn đề (khác với mô tả, hư hỏng,...), bạn có thể từ chối nhận hàng khi đồng kiểm (đối với đơn hàng được Đồng kiểm),  hoặc có thể gửi yêu cầu Trả hàng/Hoàn tiền sau khi đã nhận hà
+    top-3: score=0.7911 doc_id=188931
+             Đối với đơn hàng do Người bán tự vận chuyển:  + 15 ngày kể từ lúc bạn bấm ‘Đã nhận được hàng’, hoặc  + 20 ngày kể từ lúc đơn hàng được cập nhật trạng thái ‘Lấy hàng thành công’ và bạn không bấm ‘Đã nh
+    Agent: [DEMO LLM] Generated answer from prompt preview: Bạn là trợ lý trả lời câu hỏi chỉ dựa trên ngữ cảnh dưới đây. Nếu ngữ cảnh không chứa câu trả lời, hãy nói rõ là không tìm thấy thông tin, đừng bịa. Khi trả lời, trích dẫn số thứ tự đoạn ngữ cảnh đã dùng, ví dụ [1].  Ngữ cảnh: [1] (nguồn: 77251) Người Mua có thể gửi yêu cầu trả hàng/hoàn tiền trong vòng 15 (mười lăm) ngày kể từ lúc đơn hàng được cập nhật giao hàng thành công. Riêng đối với các Sản...
+
+=== Cau 2: Các bước gửi yêu cầu Trả hàng/Hoàn tiền trực tiếp từ trang đơn hàng trên ứng dụng Shopee?
+    top-1: score=0.9113 doc_id=79233
+             # [Trả hàng/ Hoàn tiền] Hướng dẫn gửi yêu cầu Trả hàng/ Hoàn tiền  1. Hướng dẫn gửi yêu cầu Trả hàng/Hoàn tiền  Khi cần yêu cầu trả hàng hoặc hoàn tiền trên Shopee, bạn có thể thực hiện theo một trong
+    top-2: score=0.8226 doc_id=189477
+             # [Trả hàng/ Hoàn tiền] Các phương thức gửi hàng hoàn trả và phí hoàn trả  1. Hướng dẫn trả hàng sau khi yêu cầu Trả hàng/Hoàn tiền của bạn được chấp nhận  1.1 Hình thức trả hàng và các bước trả hàng 
+    top-3: score=0.8200 doc_id=188931
+             # [Trả hàng/Hoàn tiền] Những quy định chung về Trả hàng/Hoàn tiền của Shopee  1. Điều kiện Trả hàng/Hoàn tiền của Shopee  1.1. Nguyên tắc chung  Shopee hiện chưa hỗ trợ yêu cầu đổi hàng.
+    Agent: [DEMO LLM] Generated answer from prompt preview: Bạn là trợ lý trả lời câu hỏi chỉ dựa trên ngữ cảnh dưới đây. Nếu ngữ cảnh không chứa câu trả lời, hãy nói rõ là không tìm thấy thông tin, đừng bịa. Khi trả lời, trích dẫn số thứ tự đoạn ngữ cảnh đã dùng, ví dụ [1].  Ngữ cảnh: [1] (nguồn: 79233) # [Trả hàng/ Hoàn tiền] Hướng dẫn gửi yêu cầu Trả hàng/ Hoàn tiền  1. Hướng dẫn gửi yêu cầu Trả hàng/Hoàn tiền  Khi cần yêu cầu trả hàng hoặc hoàn tiền tr...
+
+=== Cau 3: Video mở kiện hàng của Người mua cần đáp ứng tiêu chuẩn kỹ thuật và dung lượng nào?
+    top-1: score=0.7998 doc_id=79467
+             Góc quay rõ ràng, không bị khuất. Chất lượng video tốt, không bị mờ nhòe. Thể hiện rõ các thông tin sau:  Tình trạng kiện hàng: Quay 6 mặt của kiện hàng để chứng minh tình trạng khi bạn nhận được.
+    top-2: score=0.7844 doc_id=79467
+             Đã nhận được hàng, khiếu nại hàng có vấn đề (bể vỡ, sai mẫu, hàng lỗi, khác mô tả,...)  Trong các trường hợp đã nhận hàng nhưng gặp vấn đề, Shopee khuyến khích bạn chuẩn bị bằng chứng là video mở kiện
+    top-3: score=0.7819 doc_id=79467
+             Quá trình mở kiện: Thấy rõ mã vận đơn trên kiện hàng, khớp với thông tin đơn hàng của bạn. Tình trạng sản phẩm: Quay cận cảnh số lượng và tình trạng sản phẩm bên trong, đặc biệt là các niêm phong, tem
+    Agent: [DEMO LLM] Generated answer from prompt preview: Bạn là trợ lý trả lời câu hỏi chỉ dựa trên ngữ cảnh dưới đây. Nếu ngữ cảnh không chứa câu trả lời, hãy nói rõ là không tìm thấy thông tin, đừng bịa. Khi trả lời, trích dẫn số thứ tự đoạn ngữ cảnh đã dùng, ví dụ [1].  Ngữ cảnh: [1] (nguồn: 79467) Góc quay rõ ràng, không bị khuất. Chất lượng video tốt, không bị mờ nhòe. Thể hiện rõ các thông tin sau:  Tình trạng kiện hàng: Quay 6 mặt của kiện hàng đ...
+
+=== Cau 4: Người mua có phải trả phí vận chuyển khi gửi hàng hoàn trả về cho Người bán không?
+    top-1: score=0.8344 doc_id=77251
+             TRÁCH NHIỆM VỀ CHI PHÍ HOÀN TRẢ SẢN PHẨM CỦA NGƯỜI MUA  8.1. Với Sản Phẩm mua tại Shopee Mall, Người Mua có thể lựa chọn hoàn trả Sản Phẩm:  Theo hình thức “Lấy hàng hoàn trả tại nhà” hoặc “Gửi hàng t
+    top-2: score=0.8172 doc_id=77251
+             8.2. Với Sản Phẩm không thuộc Shopee Mall, Người Mua có thể lựa chọn hoàn trả Sản Phẩm:  Theo hình thức “Lấy hàng hoàn trả tại nhà” hoặc “Gửi trả hàng tại bưu cục”: Người Mua không phải thanh toán bất
+    top-3: score=0.8115 doc_id=189477
+             Chính sách hỗ trợ phí trả hàng:   2.1. Phí vận chuyển ban đầu khi yêu cầu Trả hàng/Hoàn tiền:  Nếu bạn yêu cầu Trả hàng/Hoàn tiền cho tất cả sản phẩm trong đơn hàng đã đặt và được Shopee/Người bán đồn
+    Agent: [DEMO LLM] Generated answer from prompt preview: Bạn là trợ lý trả lời câu hỏi chỉ dựa trên ngữ cảnh dưới đây. Nếu ngữ cảnh không chứa câu trả lời, hãy nói rõ là không tìm thấy thông tin, đừng bịa. Khi trả lời, trích dẫn số thứ tự đoạn ngữ cảnh đã dùng, ví dụ [1].  Ngữ cảnh: [1] (nguồn: 77251) TRÁCH NHIỆM VỀ CHI PHÍ HOÀN TRẢ SẢN PHẨM CỦA NGƯỜI MUA  8.1. Với Sản Phẩm mua tại Shopee Mall, Người Mua có thể lựa chọn hoàn trả Sản Phẩm:  Theo hình thứ...
+
+=== Cau 5: Thời gian xử lý yêu cầu Trả hàng / Hoàn tiền là bao lâu?
+    (filter: {'audience': 'buyer'})
+    top-1: score=0.8033 doc_id=188931
+             Đối với đơn hàng do Người bán tự vận chuyển:  + 15 ngày kể từ lúc bạn bấm ‘Đã nhận được hàng’, hoặc  + 20 ngày kể từ lúc đơn hàng được cập nhật trạng thái ‘Lấy hàng thành công’ và bạn không bấm ‘Đã nh
+    top-2: score=0.8008 doc_id=79233
+             Lưu ý  Thời gian xử lý  Yêu cầu của bạn thường được xử lý trong khoảng 3 - 5 ngày làm việc. Kết quả xử lý  Shopee sẽ thông báo kết quả qua mục Thông báo > Cập nhật đơn hàng và/hoặc Email của bạn. Thời
+    top-3: score=0.7886 doc_id=79233
+             # [Trả hàng/ Hoàn tiền] Hướng dẫn gửi yêu cầu Trả hàng/ Hoàn tiền  1. Hướng dẫn gửi yêu cầu Trả hàng/Hoàn tiền  Khi cần yêu cầu trả hàng hoặc hoàn tiền trên Shopee, bạn có thể thực hiện theo một trong
+    Agent: [DEMO LLM] Generated answer from prompt preview: Bạn là trợ lý trả lời câu hỏi chỉ dựa trên ngữ cảnh dưới đây. Nếu ngữ cảnh không chứa câu trả lời, hãy nói rõ là không tìm thấy thông tin, đừng bịa. Khi trả lời, trích dẫn số thứ tự đoạn ngữ cảnh đã dùng, ví dụ [1].  Ngữ cảnh: [1] (nguồn: 188931) Đối với đơn hàng do Người bán tự vận chuyển:  + 15 ngày kể từ lúc bạn bấm ‘Đã nhận được hàng’, hoặc  + 20 ngày kể từ lúc đơn hàng được cập nhật trạng thá...
+
